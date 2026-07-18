@@ -1,0 +1,738 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap');
+@import "tailwindcss";
+@import "./stitch.css";
+@plugin "@tailwindcss/typography";
+
+/* ============================================================================
+   Workifyr — design tokens
+   White canvas. Black ink. Viridian #40826D as the ONLY chromatic accent.
+   No other hues. Status reads through chip style, weight, and icon — never
+   through color.
+   ========================================================================= */
+
+@theme {
+  /* ---- Brand: viridian scale ------------------------------------------ */
+  --color-viridian-25:  #FAFCFB;
+  --color-viridian-50:  #F4F8F6;
+  --color-viridian-100: #E8F1ED;
+  --color-viridian-200: #D2E3DA;
+  --color-viridian-300: #A8C9BB;
+  --color-viridian-400: #7FAE9C;
+  --color-viridian-500: #40826D;   /* the brand color */
+  --color-viridian-600: #357058;
+  --color-viridian-700: #2F6451;
+  --color-viridian-800: #234C3D;
+  --color-viridian-900: #19372C;
+
+  /* ---- Surfaces (pure white) ------------------------------------------ */
+  --color-canvas:        #ffffff;
+  --color-surface:       #ffffff;
+  --color-surface-2:     #f7f8f9;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-muted: #f3f4f6;
+  --color-border:        #e5e7eb;
+  --color-border-2:      #d1d5db;
+  --color-border-strong: #9ca3af;
+
+  /* ---- Ink (cool neutral grayscale) ----------------------------------- */
+  --color-ink:           #0f172a;
+  --color-ink-2:         #1f2937;
+  --color-ink-secondary: #475569;
+  --color-ink-tertiary:  #64748b;
+  --color-ink-quaternary:#94a3b8;
+
+  /* ---- Functional ----------------------------------------------------- */
+  --color-success:    #2f8f5e;
+  --color-success-bg: #e8f5ee;
+  --color-warning:    #b8770f;
+  --color-warning-bg: #fbf2e2;
+  --color-danger:     #c13b3b;
+  --color-danger-bg:  #fbeaea;
+  --color-info:       #2a6fb0;
+  --color-info-bg:    #e7f0fa;
+
+  /* ---- Category palette ----------------------------------------------- */
+  --color-cat-slate:  #6b7a78;
+  --color-cat-blue:   #3a78b5;
+  --color-cat-indigo: #5c5fb5;
+  --color-cat-violet: #8a5ab5;
+  --color-cat-amber:  #c6892a;
+  --color-cat-orange: #c9683a;
+  --color-cat-rose:   #c14d6e;
+  --color-cat-teal:   #2f8b8b;
+  --color-cat-green:  #40826d;
+  --color-cat-lime:   #7ba343;
+
+  /* ---- Radius (Sharper for maturity) ----------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-2xl: 14px;
+
+  /* ---- Shadows (Punchier, higher contrast) ---------------------------- */
+  --shadow-xs:  0 1px 2px rgba(15,23,42,0.06);
+  --shadow-sm:  0 1px 2px rgba(15,23,42,0.08), 0 1px 1px rgba(15,23,42,0.04);
+  --shadow-md:  0 2px 4px rgba(15,23,42,0.06), 0 4px 12px -2px rgba(15,23,42,0.08);
+  --shadow-lg:  0 2px 6px rgba(15,23,42,0.06), 0 10px 32px -6px rgba(15,23,42,0.12);
+  --shadow-xl:  0 4px 16px -4px rgba(15,23,42,0.10), 0 20px 48px -8px rgba(15,23,42,0.16);
+
+  --shadow-card: 0 1px 2px rgba(15,23,42,0.05), 0 2px 6px rgba(15,23,42,0.02);
+  --shadow-pop:  0 4px 16px -4px rgba(15,23,42,0.10), 0 16px 40px -8px rgba(15,23,42,0.15);
+
+  --shadow-viridian-sm: 0 2px 6px rgba(64,130,109,0.30);
+  --shadow-viridian-md: 0 6px 18px -2px rgba(64,130,109,0.40);
+
+  /* ---- Type ----------------------------------------------------------- */
+  --font-sans:    "Inter", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+
+  /* ---- Motion --------------------------------------------------------- */
+  --ease-out-expo:  cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-snap:      cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   Dark mode (designed)
+   ========================================================================= */
+.dark {
+  --color-canvas:        #0a0c10;
+  --color-surface:       #11141a;
+  --color-surface-2:     #161a21;
+  --color-surface-hover: #1b1f27;
+  --color-surface-muted: #181c24;
+  --color-border:        #232831;
+  --color-border-2:      #2b3140;
+  --color-border-strong: #353c49;
+
+  --color-ink:           #ffffff;
+  --color-ink-2:         #dce0e5;
+  --color-ink-secondary: #a1a6b0;
+  --color-ink-tertiary:  #717682;
+  --color-ink-quaternary:#4f545e;
+
+  --color-viridian-25:   #0e1d18;
+  --color-viridian-50:   #122821;
+  --color-viridian-100:  #143028;
+  --color-viridian-200:  #1d4537;
+  --color-viridian-300:  #2a6451;
+  --color-viridian-400:  #3d8870;
+  --color-viridian-500:  #5fa088;
+  --color-viridian-600:  #7ab8a0;
+  --color-viridian-700:  #9bcfb8;
+
+  --color-success:    #4ec288;
+  --color-success-bg: #0e2a1c;
+  --color-warning:    #e0a04c;
+  --color-warning-bg: #2c2010;
+  --color-danger:     #e26060;
+  --color-danger-bg:  #2c1313;
+  --color-info:       #5a9ad8;
+  --color-info-bg:    #112233;
+
+  --shadow-card: 0 1px 1px rgba(0,0,0,0.3), 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-pop:  0 4px 16px -4px rgba(0,0,0,0.5), 0 16px 40px -8px rgba(0,0,0,0.6);
+  --shadow-md:   0 1px 2px rgba(0,0,0,0.3), 0 4px 12px -2px rgba(0,0,0,0.4);
+  --shadow-lg:   0 1px 3px rgba(0,0,0,0.3), 0 8px 28px -6px rgba(0,0,0,0.5);
+}
+
+/* Force light theme regardless of `.dark` on <html>. Used on public/marketing
+   surfaces (landing) that should always render light. */
+.theme-light {
+  color-scheme: light;
+  --color-canvas:        #ffffff;
+  --color-surface:       #ffffff;
+  --color-surface-2:     #f7f8f9;
+  --color-surface-hover: #f3f4f6;
+  --color-surface-muted: #f3f4f6;
+  --color-border:        #e5e7eb;
+  --color-border-2:      #d1d5db;
+  --color-border-strong: #9ca3af;
+
+  --color-ink:           #0f172a;
+  --color-ink-2:         #1f2937;
+  --color-ink-secondary: #475569;
+  --color-ink-tertiary:  #64748b;
+  --color-ink-quaternary:#94a3b8;
+
+  --color-viridian-25:   #FAFCFB;
+  --color-viridian-50:   #F4F8F6;
+  --color-viridian-100:  #E8F1ED;
+  --color-viridian-200:  #D2E3DA;
+  --color-viridian-300:  #A8C9BB;
+  --color-viridian-400:  #7FAE9C;
+  --color-viridian-500:  #40826D;
+  --color-viridian-600:  #357058;
+  --color-viridian-700:  #2F6451;
+
+  --color-success:    #2f8f5e;
+  --color-success-bg: #e8f5ee;
+  --color-warning:    #b8770f;
+  --color-warning-bg: #fbf2e2;
+  --color-danger:     #c13b3b;
+  --color-danger-bg:  #fbeaea;
+  --color-info:       #2a6fb0;
+  --color-info-bg:    #e7f0fa;
+
+  --shadow-card: 0 1px 1px rgba(15,23,42,0.02), 0 1px 3px rgba(15,23,42,0.04);
+  --shadow-pop:  0 4px 16px -4px rgba(15,23,42,0.08), 0 16px 40px -8px rgba(15,23,42,0.10);
+  --shadow-md:   0 1px 2px rgba(15,23,42,0.04), 0 4px 12px -2px rgba(15,23,42,0.06);
+  --shadow-lg:   0 1px 3px rgba(15,23,42,0.04), 0 8px 28px -6px rgba(15,23,42,0.08);
+}
+
+/* ============================================================================
+   Base
+   ========================================================================= */
+@layer base {
+  html, body {
+    background: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+    letter-spacing: -0.005em;
+  }
+
+  .tabular-nums { font-variant-numeric: tabular-nums; }
+
+  ::selection {
+    background: var(--color-viridian-100);
+    color: var(--color-viridian-700);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--color-viridian-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  *:hover::-webkit-scrollbar-thumb {
+    background: var(--color-border-2);
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-viridian-300); }
+
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ============================================================================
+   Components
+   ========================================================================= */
+@layer components {
+
+  .display {
+    font-family: var(--font-display);
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+
+  /* Card — quiet by default, lifts on hover. */
+  .card {
+    position: relative;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 200ms var(--ease-out-quart),
+                transform 200ms var(--ease-out-quart),
+                border-color 200ms;
+  }
+  .card-interactive:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+    border-color: var(--color-border-2);
+  }
+
+  .card-inset {
+    background: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Highlights ribbon — black surface, white ink. No chromatic color. */
+  .highlights-ribbon {
+    background: linear-gradient(180deg, #0A0C10 0%, #14171C 100%);
+    color: #FFFFFF;
+    border-radius: var(--radius-2xl);
+    border: 1px solid #1F232B;
+  }
+
+  /* Section eyebrow. */
+  .label-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-tertiary);
+  }
+
+  /* Chip — only two variants: neutral (gray) and viridian. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--color-surface-muted);
+    color: var(--color-ink-secondary);
+    border: 1px solid var(--color-border);
+  }
+  .chip-viridian {
+    background: var(--color-viridian-100);
+    color: var(--color-viridian-700);
+    border-color: var(--color-viridian-200);
+  }
+  .chip-outline {
+    background: var(--color-surface);
+    color: var(--color-ink-secondary);
+    border-color: var(--color-border-2);
+  }
+  .chip-strong {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border-color: var(--color-ink);
+  }
+
+  /* Icon tile — single tone. Used for module icons everywhere. */
+  .icon-tile {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    background: var(--color-viridian-100);
+    color: var(--color-viridian-700);
+    border: 1px solid var(--color-viridian-200);
+  }
+  .icon-tile-muted {
+    background: var(--color-surface-muted);
+    color: var(--color-ink-secondary);
+    border-color: var(--color-border);
+  }
+  .icon-tile-solid {
+    background: var(--color-viridian-500);
+    color: white;
+    border-color: var(--color-viridian-600);
+  }
+  .icon-tile-ink {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border-color: var(--color-ink);
+  }
+
+  /* Primary CTA — viridian with subtle gradient + viridian shadow. */
+  .btn-viridian {
+    background: linear-gradient(180deg, var(--color-viridian-500) 0%, var(--color-viridian-600) 100%);
+    color: white;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.16),
+      0 1px 0 rgba(0,0,0,0.04),
+      var(--shadow-viridian-sm);
+    transition: box-shadow 160ms var(--ease-out-quart),
+                transform 120ms var(--ease-out-quart),
+                background 160ms;
+  }
+  .btn-viridian:hover {
+    background: linear-gradient(180deg, var(--color-viridian-600) 0%, var(--color-viridian-700) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.18),
+      var(--shadow-viridian-md);
+  }
+  .btn-viridian:active { transform: translateY(0.5px); }
+
+  /* Keyboard hint chip. */
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 4px;
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--color-ink-tertiary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-2);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+
+  /* Tab strip used on detail pages. */
+  .tabs {
+    display: inline-flex;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .tabs > a, .tabs > button {
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-secondary);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: color 160ms, border-color 160ms;
+  }
+  .tabs > a:hover, .tabs > button:hover { color: var(--color-ink); }
+  .tabs > a[aria-current="page"], .tabs > .tab-active {
+    color: var(--color-viridian-700);
+    border-bottom-color: var(--color-viridian-500);
+  }
+
+  .sparkline { color: var(--color-viridian-500); }
+
+  .chip-success { background: var(--color-success-bg); color: var(--color-success); border-color: transparent; }
+  .chip-warning { background: var(--color-warning-bg); color: var(--color-warning); border-color: transparent; }
+  .chip-danger  { background: var(--color-danger-bg);  color: var(--color-danger);  border-color: transparent; }
+  .chip-info    { background: var(--color-info-bg);    color: var(--color-info);    border-color: transparent; }
+
+  .kpi {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: 14px 16px 0;
+    position: relative;
+    overflow: hidden;
+    height: 122px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .kpi-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-tertiary);
+  }
+  .kpi-value {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+    margin-top: 4px;
+  }
+  .kpi-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11.5px;
+    font-weight: 550;
+    margin-top: 2px;
+  }
+  .kpi-delta.up   { color: var(--color-success); }
+  .kpi-delta.down { color: var(--color-danger); }
+  .kpi-delta.flat { color: var(--color-ink-tertiary); }
+  .kpi-spark { margin: 0 -16px -1px; height: 36px; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 18px 22px;
+    background:
+      radial-gradient(circle at 100% 0%, var(--color-viridian-50) 0%, transparent 50%),
+      var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    margin-bottom: 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 60%, rgba(64, 130, 109, 0.04));
+    pointer-events: none;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+  .hero-sub {
+    color: var(--color-ink-tertiary);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+  .hero-snapshot {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+  .snap-stat {
+    display: flex; flex-direction: column; gap: 2px;
+    text-align: right;
+    border-left: 1px solid var(--color-border);
+    padding-left: 18px;
+  }
+  .snap-stat:first-child { border-left: 0; padding-left: 0; }
+  .snap-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-ink-tertiary);
+  }
+  .snap-val {
+    font-size: 18px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.015em;
+  }
+  .snap-delta {
+    font-size: 11px;
+    font-weight: 550;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    justify-content: flex-end;
+  }
+  .snap-delta.up   { color: var(--color-success); }
+  .snap-delta.down { color: var(--color-danger); }
+
+  .section-h {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 24px 0 12px;
+  }
+  .section-h h2 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .section-h .sub {
+    font-size: 12px;
+    color: var(--color-ink-tertiary);
+  }
+
+  .timeline { position: relative; padding-left: 22px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: var(--color-viridian-100);
+    border-radius: 2px;
+  }
+  .tl-item { position: relative; padding: 8px 0; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -22px; top: 14px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid var(--color-viridian-400);
+  }
+  .tl-time { font-size: 11px; color: var(--color-ink-tertiary); }
+  .tl-msg { font-size: 12.5px; }
+  .tl-msg b { font-weight: 600; }
+
+  .donut-wrap { position: relative; display: grid; place-items: center; }
+  .donut-center {
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+  }
+  .donut-center .v {
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .donut-center .l {
+    font-size: 10.5px;
+    color: var(--color-ink-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  .bar {
+    height: 6px;
+    background: var(--color-surface-2);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .bar > span {
+    display: block;
+    height: 100%;
+    background: var(--color-viridian-500);
+    border-radius: 999px;
+  }
+
+  .filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-ink-secondary);
+    cursor: pointer;
+  }
+  .filter-chip:hover { background: var(--color-surface-hover); }
+  .filter-chip.active {
+    background: var(--color-viridian-50);
+    border-color: var(--color-viridian-200);
+    color: var(--color-viridian-700);
+  }
+  .filter-chip .x { color: var(--color-ink-tertiary); }
+
+  /* Dashboard layout primitives */
+  .page {
+    padding: 24px 28px 60px;
+  }
+
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card-header {
+    padding: 14px 16px 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--color-ink);
+    line-height: 1.3;
+  }
+  .card-sub {
+    font-size: 11.5px;
+    color: var(--color-ink-tertiary);
+    margin-top: 2px;
+  }
+  .card-toolbar {
+    margin-left: auto;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .card-body { padding: 0 16px 16px; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 550;
+    border: 1px solid transparent;
+    transition: all 100ms ease-out;
+    white-space: nowrap;
+    letter-spacing: -0.005em;
+    cursor: pointer;
+  }
+  .btn-ghost {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    color: var(--color-ink);
+  }
+  .btn-ghost:hover {
+    background: var(--color-surface-hover);
+    border-color: var(--color-border-2);
+  }
+  .btn-subtle {
+    background: var(--color-surface-2);
+    color: var(--color-ink-secondary);
+  }
+  .btn-subtle:hover {
+    background: var(--color-surface-hover);
+    color: var(--color-ink);
+  }
+  .btn-sm { height: 28px; padding: 0 10px; font-size: 12px; }
+  .btn-icon { width: 32px; padding: 0; }
+  .btn-sm.btn-icon { width: 28px; }
+
+  .snap-delta.flat { color: var(--color-ink-tertiary); }
+
+  .spark { width: 100%; display: block; }
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 11px;
+    font-family: var(--font-display);
+  }
+}
+
+.recharts-default-tooltip {
+  background: var(--color-ink) !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 8px 10px !important;
+  box-shadow: var(--shadow-lg) !important;
+  color: white !important;
+  font-size: 11.5px !important;
+}
+.recharts-tooltip-label {
+  color: rgba(255,255,255,0.7) !important;
+  font-size: 10.5px !important;
+  margin-bottom: 4px !important;
+}
+.recharts-tooltip-item { color: white !important; }
+.recharts-cartesian-axis-tick-value { fill: var(--color-ink-tertiary) !important; font-size: 10.5px !important; }
+.recharts-cartesian-grid line { stroke: var(--color-border) !important; stroke-dasharray: 2 3; }
+.recharts-cartesian-axis-line,
+.recharts-cartesian-axis-tick-line { stroke: var(--color-border) !important; }
+
+/* ============================================================================
+   Utilities
+   ========================================================================= */
+@layer utilities {
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .anim-rise { animation: rise-in 500ms var(--ease-out-expo) both; }
+  .anim-rise-delay-1 { animation-delay: 60ms; }
+  .anim-rise-delay-2 { animation-delay: 120ms; }
+  .anim-rise-delay-3 { animation-delay: 180ms; }
+
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.4); opacity: 0.6; }
+  }
+  .anim-pulse-dot { animation: pulse-dot 1.6s ease-in-out infinite; }
+}
