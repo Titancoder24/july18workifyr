@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Workifyr - Unified CRM &amp; HR</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#3f6754",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#002114",
+                        "on-secondary-container": "#626567",
+                        "outline-variant": "#bfc9c1",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#274e3d",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#dce9ff",
+                        "secondary": "#5c5f61",
+                        "tertiary-fixed-dim": "#a5d0b9",
+                        "surface-variant": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "surface-container": "#e5eeff",
+                        "primary-container": "#2d6a4f",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#707973",
+                        "primary": "#0f5238",
+                        "tertiary": "#274f3d",
+                        "surface-bright": "#f8f9ff",
+                        "secondary-fixed-dim": "#c4c7c9",
+                        "on-tertiary-container": "#b8e3cb",
+                        "primary-fixed-dim": "#95d4b3",
+                        "on-secondary-fixed": "#191c1e",
+                        "background": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#002114",
+                        "tertiary-fixed": "#c1ecd4",
+                        "on-primary-container": "#a8e7c5",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-surface": "#213145",
+                        "inverse-on-surface": "#eaf1ff",
+                        "secondary-fixed": "#e0e3e5",
+                        "on-surface-variant": "#404943",
+                        "primary-fixed": "#b1f0ce",
+                        "on-surface": "#0b1c30",
+                        "secondary-container": "#e0e3e5",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#2c694e",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#444749",
+                        "on-primary-fixed-variant": "#0e5138",
+                        "inverse-primary": "#95d4b3"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "margin-desktop": "80px",
+                        "base": "4px",
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-xl": ["Hanken Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid theme('colors.outline-variant');
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(45, 106, 79, 0.05);
+            transform: translateY(-2px);
+        }
+        .ai-glow {
+            background: radial-gradient(circle at center, theme('colors.primary-container') 0%, transparent 70%);
+            opacity: 0.05;
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="bg-surface/70 dark:bg-surface-container/70 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Workifyr</div>
+<nav class="hidden md:flex gap-gutter items-center">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-secondary-container/50 dark:hover:bg-tertiary-container/50 rounded-lg p-2 font-label-md text-label-md" href="#">Features</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-secondary-container/50 dark:hover:bg-tertiary-container/50 rounded-lg p-2 font-label-md text-label-md" href="#">About Us</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-secondary-container/50 dark:hover:bg-tertiary-container/50 rounded-lg p-2 font-label-md text-label-md" href="#">Pricing</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors hover:bg-secondary-container/50 dark:hover:bg-tertiary-container/50 rounded-lg p-2 font-label-md text-label-md" href="#">Docs</a>
+</nav>
+<button class="bg-primary-container text-on-primary-container hover:opacity-90 px-6 py-3 rounded-lg font-label-md text-label-md transition-all active:scale-95 duration-150 ease-in-out hidden md:block">
+                Deploy Workspace
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-section-gap px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto flex flex-col gap-section-gap">
+<!-- Hero Section -->
+<section class="text-center flex flex-col items-center gap-stack-lg pt-12 md:pt-24">
+<h1 class="font-display-xl text-display-xl max-w-4xl text-primary">The Best CRM and HR Software.</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">Stop duct-taping SaaS tools together. Unify your entire Sales CRM and HR operations into a single, high-performance architecture.</p>
+<div class="flex flex-col sm:flex-row gap-stack-md mt-4">
+<button class="bg-primary-container text-on-primary-container px-8 py-4 rounded-lg font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity">Deploy Workspace</button>
+<button class="border border-outline text-secondary hover:bg-surface-container px-8 py-4 rounded-lg font-label-md text-label-md transition-colors">Read the Docs</button>
+</div>
+<div class="w-full mt-16 rounded-xl overflow-hidden glass-card h-[400px] md:h-[600px] bg-cover bg-center" data-alt="A highly professional, minimalist digital dashboard mockup displayed on a sleek monitor in a bright, modern office setting. The screen shows abstract charts and unified data streams in deep forest green and crisp white hues, emphasizing a light-mode aesthetic. Soft natural light filters in from off-screen, creating a serene, high-performance mood typical of enterprise SaaS marketing." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCoaZAPKV8m9HEEc8NRrdM7Iuf5-UGjrDCqYSlX9CS9n99CD6CQ1DhyQskFjAeMOa1Yb_qKOPw7qsGqDVTuWKdpPSEpA69kwg6Jb_Vrl-IUOfsqDsOWOWBFj-2aqjut_YhNBUilKy_vJ32Q1wJg0J3CtwB0rrX-uUulF-m4Mp4KYSxDSAr1roVB8F9TnfGotTOW4Ji2kohsHU4KY1vX9G6IQvg3M90eLm5DXh_afSVfiq9MZWeq5DBboxkRChc44RIDKdwAmbCBS3Ar');">
+</div>
+</section>
+<!-- Problem Section -->
+<section class="flex flex-col md:flex-row gap-gutter items-center justify-between">
+<div class="md:w-1/2 flex flex-col gap-stack-md">
+<span class="font-label-md text-label-md text-error bg-error-container/50 px-3 py-1 rounded-full w-max">The Friction</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">You are paying for 10 different tools that don't talk to each other.</h2>
+<p class="font-body-lg text-body-lg text-secondary">Managing data across Salesforce, Workday, Gusto, Stripe, and Zendesk creates endless silos. It's expensive, fragile, and slows your team down.</p>
+</div>
+<div class="md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-stack-md">
+<!-- Abstract Logos -->
+<div class="glass-card flex items-center justify-center p-6 rounded-xl text-outline grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-not-allowed">
+<span class="material-symbols-outlined text-4xl">cloud_off</span>
+</div>
+<div class="glass-card flex items-center justify-center p-6 rounded-xl text-outline grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-not-allowed">
+<span class="material-symbols-outlined text-4xl">link_off</span>
+</div>
+<div class="glass-card flex items-center justify-center p-6 rounded-xl text-outline grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-not-allowed">
+<span class="material-symbols-outlined text-4xl">sync_problem</span>
+</div>
+</div>
+</section>
+<!-- Product Philosophy -->
+<section class="text-center flex flex-col items-center gap-stack-md py-16 bg-surface-container-low rounded-2xl p-8 relative overflow-hidden">
+<div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9InJnYmEoMTUsIDgyLCA1NiwgMC4xKSIvPjwvc3ZnPg==')] opacity-50"></div>
+<h2 class="font-headline-lg text-headline-lg text-primary relative z-10">Unified by Design.</h2>
+<p class="font-body-lg text-body-lg text-secondary max-w-3xl relative z-10">Workifyr is a single, beautiful architecture housing your entire CRM and HRM ecosystem natively.</p>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-on-background border-t border-outline-variant/20 w-full transition-all duration-300 ease-out">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter py-section-gap px-margin-mobile md:px-margin-desktop max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-stack-md">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">Workifyr</span>
+<p class="font-body-md text-body-md text-secondary">© 2024 Workifyr. All rights reserved. Unified by Design.</p>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider mb-2">Product</h4>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">Features</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">Pricing</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider mb-2">Company</h4>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">About Us</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">Docs</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider mb-2">Legal</h4>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-secondary dark:text-on-secondary-fixed-variant hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>
