@@ -44,6 +44,14 @@ const MODULE_CATEGORIES: ModuleCategory[] = [
     ],
   },
   {
+    label: "Outreach",
+    modules: [
+      { key: "outreach_contacts", label: "Contacts" },
+      { key: "outreach", label: "Outreach" },
+      { key: "outreach_inbox", label: "Outreach inbox" },
+    ],
+  },
+  {
     label: "HRM",
     modules: [
       { key: "employees", label: "Employees" },

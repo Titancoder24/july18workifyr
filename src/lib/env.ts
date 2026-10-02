@@ -14,6 +14,7 @@ const ServerEnv = z.object({
   OPENROUTER_APP_URL: z.string().optional(),
   OPENROUTER_APP_NAME: z.string().default("Workifyr"),
   NEXT_PUBLIC_APP_URL: z.string().url().default("http://localhost:3000"),
+  COMPOSIO_API_KEY: z.string().min(8).optional(),
 });
 
 const PublicEnv = ServerEnv.pick({

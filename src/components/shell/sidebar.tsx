@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import {
@@ -9,6 +10,7 @@ import {
   UserCheck, Clock, Plane, Wallet, Star, Megaphone,
   Settings, Shield, Activity, Eye,
   ChevronDown, ChevronRight, Search,
+  ContactRound, Send, MailOpen,
   PanelLeftClose, PanelLeft, Palette,
 } from "lucide-react";
 import { useRBAC } from "@/lib/rbac";
@@ -16,7 +18,7 @@ import { initials as toInitials } from "@/lib/format";
 import { useTheme } from "@/lib/theme";
 
 type NavItem = {
-  href: string;
+  href: Route;
   label: string;
   icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
   module?: string;
@@ -44,6 +46,14 @@ const NAV: NavSection[] = [
       { href: "/crm/invoices",   label: "Invoices",     icon: Receipt,    module: "invoices" },
       { href: "/crm/reports",    label: "Reports",      icon: BarChart3,  module: "reports" },
       { href: "/crm/ai",         label: "AI Assistant", icon: Sparkles,   module: "ai" },
+    ],
+  },
+  {
+    title: "Outreach",
+    items: [
+      { href: "/outreach/contacts", label: "Contacts", icon: ContactRound, module: "outreach_contacts" },
+      { href: "/outreach", label: "Outreach", icon: Send, module: "outreach" },
+      { href: "/outreach/inbox", label: "Outreach inbox", icon: MailOpen, module: "outreach_inbox" },
     ],
   },
   {
@@ -296,8 +306,13 @@ export function Sidebar({
                 />
               )}
               {section.items.map((item) => {
+                const matches = (href: string) =>
+                  pathname === href || Boolean(pathname?.startsWith(`${href}/`));
                 const active =
-                  pathname === item.href || pathname?.startsWith(`${item.href}/`);
+                  matches(item.href) &&
+                  !section.items.some(
+                    (other) => other.href.length > item.href.length && matches(other.href),
+                  );
                 const Icon = item.icon;
                 return (
                   <Link
